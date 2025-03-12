@@ -22,3 +22,11 @@ showLabels = tk.BooleanVar()
 showLegend.set(False)
 showPercentageValues.set(False)
 showLabels.set(False)
+
+choose_a_year_label = tk.Label(window, text="choose a year for the pie chart")
+choose_a_year_label.pack()
+
+releaseYears_comboBox = ttk.Combobox(window, values=release_years)
+releaseYears_comboBox.pack()
+
+window.mainloop()
