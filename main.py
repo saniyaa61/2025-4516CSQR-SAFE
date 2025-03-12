@@ -40,7 +40,7 @@ ShowPercentageValues_CheckBox = ttk.Checkbutton(
 )
 ShowPercentageValues_CheckBox.pack()
 
-# check box to make the legend visible or not visible
+# check box to make the labels visible or not visible
 ShowLabels_CheckBox = ttk.Checkbutton(window, text="show labels", variable=showLabels)
 ShowLabels_CheckBox.pack(pady=10)
 
