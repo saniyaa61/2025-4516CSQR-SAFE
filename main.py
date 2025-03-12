@@ -31,7 +31,13 @@ releaseYears_comboBox = ttk.Combobox(window, values=release_years)
 releaseYears_comboBox.pack()
 
 # check box to make the legend visible or not visible
-legend_CheckBox = ttk.Checkbutton(window, text="show legend", variable=showLegend)
-legend_CheckBox.pack(pady=10)
+ShowLegend_CheckBox = ttk.Checkbutton(window, text="show legend", variable=showLegend)
+ShowLegend_CheckBox.pack(pady=10)
+
+# check box to make the percentage values visible or not visible
+ShowPercentageValues_CheckBox = ttk.Checkbutton(
+    window, text="show legend", variable=showLegend
+)
+ShowPercentageValues_CheckBox.pack(pady=10)
 
 window.mainloop()
