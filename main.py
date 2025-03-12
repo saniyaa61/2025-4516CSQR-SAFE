@@ -26,7 +26,12 @@ showLabels.set(False)
 choose_a_year_label = tk.Label(window, text="choose a year for the pie chart")
 choose_a_year_label.pack()
 
+# dropdown menu of release years to pick
 releaseYears_comboBox = ttk.Combobox(window, values=release_years)
 releaseYears_comboBox.pack()
+
+# check box to make the legend visible or not visible
+legend_CheckBox = ttk.Checkbutton(window, text="show legend", variable=showLegend)
+legend_CheckBox.pack(pady=10)
 
 window.mainloop()
