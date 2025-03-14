@@ -108,8 +108,10 @@ def showPieChart():
     plt.show()
 
 
-showPieChartButton = tk.Button(window, text="show Pie Chart", command=showPieChart)
-showPieChartButton.pack()
+showPieChartButton = tk.Button(
+    window, text="show Pie Chart", bg="light blue", command=showPieChart
+)
+showPieChartButton.pack(pady=20)
 
 errorLabel = tk.Label(window, text="", foreground="red", font=(None, 20))
 errorLabel.pack()
