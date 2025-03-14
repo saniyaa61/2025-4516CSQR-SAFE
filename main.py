@@ -23,6 +23,7 @@ showLegend.set(False)
 showPercentageValues.set(False)
 showLabels.set(False)
 
+# label telling you to choose a year
 choose_a_year_label = tk.Label(window, text="choose a year for the pie chart")
 choose_a_year_label.pack()
 
@@ -45,7 +46,9 @@ ShowLabels_CheckBox = ttk.Checkbutton(window, text="show labels", variable=showL
 ShowLabels_CheckBox.pack(pady=10)
 
 
+# function to show the pie chart of a specific year
 def showPieChart():
+    # checking if the value of the combobox is valid
     if (
         not releaseYears_comboBox.get()
         or int(releaseYears_comboBox.get()) not in release_years
@@ -60,6 +63,7 @@ def showPieChart():
     show_percentageValues = showPercentageValues.get()
     show_labels = showLabels.get()
 
+    # movies/tv shows that have been released in the year chosen
     titles = df[df["release_year"] == year]
 
     if show_percentageValues:
@@ -74,7 +78,7 @@ def showPieChart():
 
     plt.pie(titles["rating"].value_counts(), labels=labels, autopct=percentageValues)
 
-    if showLegend:
+    if show_legend:
         plt.legend(
             titles["rating"].unique(), loc="center left", bbox_to_anchor=(1.1, 0.5)
         )
