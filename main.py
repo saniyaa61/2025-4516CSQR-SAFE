@@ -90,12 +90,12 @@ def showPieChart():
     axes[0].pie(
         titles1["rating"].value_counts(), labels=labels1, autopct=percentageValues
     )
-    axes[0].set_title(f"Rating of movies in {year1}")
+    axes[0].set_title(f"Rating of movies/tv shows in {year1}")
 
     axes[1].pie(
         titles2["rating"].value_counts(), labels=labels2, autopct=percentageValues
     )
-    axes[1].set_title(f"Rating of movies in {year2}")
+    axes[1].set_title(f"Rating of movies/tv shows in {year2}")
 
     if show_legend:
         axes[0].legend(titles1["rating"].unique(), loc="center left")
