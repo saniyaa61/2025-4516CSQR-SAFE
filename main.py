@@ -54,12 +54,15 @@ def showPieChart():
     # checking if the value of the combobox is valid
     if (
         not releaseYears1_comboBox.get()
+        or not releaseYears2_comboBox.get()
         or int(releaseYears1_comboBox.get()) not in release_years
+        or int(releaseYears2_comboBox.get()) not in release_years
     ):
         errorLabel.config(text="ERROR - please select a valid year")
         return
     else:
-        year = int(releaseYears1_comboBox.get())
+        year1 = int(releaseYears1_comboBox.get())
+        year2 = int(releaseYears2_comboBox.get())
         errorLabel.config(text="")
 
     show_legend = showLegend.get()
@@ -67,7 +70,8 @@ def showPieChart():
     show_labels = showLabels.get()
 
     # movies/tv shows that have been released in the year chosen
-    titles = df[df["release_year"] == year]
+    titles1 = df[df["release_year"] == year1]
+    titles2 = df[df["release_year"] == year2]
 
     if show_percentageValues:
         percentageValues = lambda p: f"{p:.2f}%" if p > 0.5 else ""
@@ -75,19 +79,32 @@ def showPieChart():
         percentageValues = None
 
     if show_labels:
-        labels = titles["rating"].unique()
+        labels1 = titles1["rating"].unique()
+        labels2 = titles2["rating"].unique()
     else:
-        labels = None
+        labels1 = None
+        labels2 = None
 
-    plt.pie(titles["rating"].value_counts(), labels=labels, autopct=percentageValues)
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5.5))
+
+    axes[0].pie(
+        titles1["rating"].value_counts(), labels=labels1, autopct=percentageValues
+    )
+    axes[0].set_title(f"Rating of movies in {year1}")
+
+    axes[1].pie(
+        titles2["rating"].value_counts(), labels=labels2, autopct=percentageValues
+    )
+    axes[1].set_title(f"Rating of movies in {year2}")
 
     if show_legend:
-        plt.legend(
-            titles["rating"].unique(), loc="center left", bbox_to_anchor=(1.1, 0.5)
-        )
+        axes[0].legend(titles1["rating"].unique(), loc="center left")
+        axes[1].legend(titles2["rating"].unique(), loc="center left")
 
-    plt.title(f"Ratings of movies/tv shows released in {year}")
-    plt.text(-0.5, -1.5, f"Total number of movies/tv shows: {len(titles)}")
+    axes[0].text(-0.5, -1.5, f"Total number of movies/tv shows: {len(titles1)}")
+    axes[1].text(-0.5, -1.5, f"Total number of movies/tv shows: {len(titles2)}")
+
+    plt.tight_layout()
     plt.show()
 
 
