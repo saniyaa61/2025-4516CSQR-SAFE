@@ -44,4 +44,23 @@ ShowPercentageValues_CheckBox.pack()
 ShowLabels_CheckBox = ttk.Checkbutton(window, text="show labels", variable=showLabels)
 ShowLabels_CheckBox.pack(pady=10)
 
+
+def showPieChart():
+    if (
+        not releaseYears_comboBox.get()
+        or int(releaseYears_comboBox.get()) not in release_years
+    ):
+        errorLabel.config(text="ERROR - please select a valid year")
+        return
+    else:
+        year = int(releaseYears_comboBox.get())
+        errorLabel.config(text="")
+
+
+showPieChartButton = tk.label(window, text="show Pie Chart", command=showPieChart)
+showPieChartButton.pack()
+
+errorLabel = tk.label(window, text="", foreground="red", font=(None, 20))
+errorLabel.pack()
+
 window.mainloop()
