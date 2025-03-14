@@ -72,6 +72,17 @@ def showPieChart():
     else:
         labels = None
 
+    plt.pie(titles["rating"].value_counts(), labels=labels, autopct=percentageValues)
+
+    if showLegend:
+        plt.legend(
+            titles["rating"].unique(), loc="center left", bbox_to_anchor=(1.1, 0.5)
+        )
+
+    plt.title(f"Ratings of movies/tv shows released in {year}")
+    plt.text(-0.5, -1.5, f"Total number of movies/tv shows: {len(titles)}")
+    plt.show()
+
 
 showPieChartButton = tk.Button(window, text="show Pie Chart", command=showPieChart)
 showPieChartButton.pack()
