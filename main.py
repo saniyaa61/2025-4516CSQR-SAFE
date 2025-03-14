@@ -24,12 +24,15 @@ showPercentageValues.set(False)
 showLabels.set(False)
 
 # label telling you to choose a year
-choose_a_year_label = tk.Label(window, text="choose a year for the pie chart")
+choose_a_year_label = tk.Label(window, text="choose two years for the pie chart")
 choose_a_year_label.pack()
 
 # dropdown menu of release years to pick
-releaseYears_comboBox = ttk.Combobox(window, values=release_years)
-releaseYears_comboBox.pack()
+releaseYears1_comboBox = ttk.Combobox(window, values=release_years)
+releaseYears1_comboBox.pack()
+
+releaseYears2_comboBox = ttk.Combobox(window, values=release_years)
+releaseYears2_comboBox.pack(pady=10)
 
 # check box to make the legend visible or not visible
 ShowLegend_CheckBox = ttk.Checkbutton(window, text="show legend", variable=showLegend)
@@ -50,13 +53,13 @@ ShowLabels_CheckBox.pack(pady=10)
 def showPieChart():
     # checking if the value of the combobox is valid
     if (
-        not releaseYears_comboBox.get()
-        or int(releaseYears_comboBox.get()) not in release_years
+        not releaseYears1_comboBox.get()
+        or int(releaseYears1_comboBox.get()) not in release_years
     ):
         errorLabel.config(text="ERROR - please select a valid year")
         return
     else:
-        year = int(releaseYears_comboBox.get())
+        year = int(releaseYears1_comboBox.get())
         errorLabel.config(text="")
 
     show_legend = showLegend.get()
