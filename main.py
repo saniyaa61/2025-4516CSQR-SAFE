@@ -60,6 +60,18 @@ def showPieChart():
     show_percentageValues = showPercentageValues.get()
     show_labels = showLabels.get()
 
+    titles = df[df["release_year"] == year]
+
+    if show_percentageValues:
+        percentageValues = lambda p: f"{p:.2f}%" if p > 0.5 else ""
+    else:
+        percentageValues = None
+
+    if show_labels:
+        labels = titles["rating"].unique()
+    else:
+        labels = None
+
 
 showPieChartButton = tk.Button(window, text="show Pie Chart", command=showPieChart)
 showPieChartButton.pack()
