@@ -56,11 +56,15 @@ def showPieChart():
         year = int(releaseYears_comboBox.get())
         errorLabel.config(text="")
 
+    show_legend = showLegend.get()
+    show_percentageValues = showPercentageValues.get()
+    show_labels = showLabels.get()
 
-showPieChartButton = tk.label(window, text="show Pie Chart", command=showPieChart)
+
+showPieChartButton = tk.Button(window, text="show Pie Chart", command=showPieChart)
 showPieChartButton.pack()
 
-errorLabel = tk.label(window, text="", foreground="red", font=(None, 20))
+errorLabel = tk.Label(window, text="", foreground="red", font=(None, 20))
 errorLabel.pack()
 
 window.mainloop()
