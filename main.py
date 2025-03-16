@@ -74,17 +74,20 @@ def showPieChart():
     titles2 = df[df["release_year"] == year2]
 
     if show_percentageValues:
+        # fuunction that checks if the percentage values are over 0.5 if not they are not displayed
         percentageValues = lambda p: f"{p:.2f}%" if p > 0.5 else ""
     else:
         percentageValues = None
 
     if show_labels:
+        # getting the unique values of labels1 and labels2
         labels1 = titles1["rating"].unique()
         labels2 = titles2["rating"].unique()
     else:
         labels1 = None
         labels2 = None
 
+    # creates a matplotlib figure with 2 side by side plots
     fig, axes = plt.subplots(1, 2, figsize=(12, 5.5))
 
     axes[0].pie(
