@@ -98,8 +98,8 @@ def showPieChart():
     axes[1].set_title(f"Rating of movies/tv shows in {year2}")
 
     if show_legend:
-        axes[0].legend(titles1["rating"].unique(), loc="center left")
-        axes[1].legend(titles2["rating"].unique(), loc="center left")
+        axes[0].legend(titles1["rating"].unique(), loc="upper left")
+        axes[1].legend(titles2["rating"].unique(), loc="upper left")
 
     axes[0].text(-0.5, -1.5, f"Total number of movies/tv shows: {len(titles1)}")
     axes[1].text(-0.5, -1.5, f"Total number of movies/tv shows: {len(titles2)}")
