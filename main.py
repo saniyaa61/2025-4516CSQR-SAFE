@@ -74,7 +74,7 @@ def showPieChart():
     titles2 = df[df["release_year"] == year2]
 
     if show_percentageValues:
-        # fuunction that checks if the percentage values are over 0.5 if not they are not displayed
+        # function that checks if the percentage values are over 0.5 if not they are not displayed
         percentageValues = lambda p: f"{p:.2f}%" if p > 0.5 else ""
     else:
         percentageValues = None
