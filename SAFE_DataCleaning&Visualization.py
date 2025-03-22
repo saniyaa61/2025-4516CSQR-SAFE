@@ -44,4 +44,17 @@ print(df.columns) # Returns all the columns present in the dataset
 print("\n---Updated Netflix Dataset with 10 Columns---")
 print(df.head())  # Returns the first 5 rows of the dataset by default
 
+print("\n---Different Ratings of the Netflix Dataset---")
+print(df['rating'].unique())  # Returns unique values from the ratings column
+
+print("\n---Numeric Overview of the Ratings Column---")
+print(df['rating'].value_counts())  # Counts the values each individual rating holds
+
+ratings_to_drop = ['R', 'TV-MA', 'NC-17', 'NR', 'UR']  # Making a list of some of the values of ratings column
+df.drop(df[df['rating'].isin(ratings_to_drop)].index, inplace=True)  # Deleting / dropping the values stored in ratings_to_drop list
+df.reset_index(drop=True, inplace=True)  # Resets the index of the dataset
+
+print("\n---Updated Ratings Column of the Netflix Dataset---")
+print(df['rating'].unique())  # Returns unique values from the ratings column
+
 
