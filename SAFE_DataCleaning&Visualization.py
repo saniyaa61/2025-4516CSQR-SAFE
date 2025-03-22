@@ -10,7 +10,7 @@ print("Number of Rows in the Dataset are:", rows)  # Returns only the no. of row
 print("Number of Columns in the Dataset are:", cols)  # Returns only the no. of columns present in the dataset
 
 print("\n---Information of the Netflix Dataset---")
-print(df.info())  # Returns all column names, non-null values, count, and thier datatypes
+print(df.info())  # Returns all column names, non-null values, count, and their datatypes
 
 print("\n---Description of the Netflix Dataset---")
 print(df.describe())  # Returns arithemic calculations based on all numeric data found in the dataset
@@ -23,7 +23,7 @@ print("\n---Checking if the Missing Values / Empty Rows in the Netflix Dataset a
 print(df.isnull().sum())  # Checks for null values and then returns their sum
 
 print("\n---Updated Information of the Netflix Dataset---")
-print(df.info())  # Returns all column names, non-null values, count, and thier datatypes
+print(df.info())  # Returns all column names, non-null values, count, and their datatypes
 
 print("\n---Updated Shape of the Netflix Dataset---")
 print(df.shape)  # Returns the no. of rows and no. of columns present in the dataset
@@ -56,5 +56,22 @@ df.reset_index(drop=True, inplace=True)  # Resets the index of the dataset
 
 print("\n---Updated Ratings Column of the Netflix Dataset---")
 print(df['rating'].unique())  # Returns unique values from the ratings column
+
+df.rename(columns={'listed_in' : 'genre'}, inplace=True)  # Renaming the 'listed_in' column to 'genre'
+print("\n---Updated Columns of the Netflix Dataset---")
+print(df.columns)  # Returns all the columns present in the dataset
+
+print("\n---Updated Information of the Netflix Dataset After Filtering---")
+print(df.info())  # Returns all column names, non-null values, count, and their datatypes
+
+print("\n---Updated Description of the Netflix Dataset After Filtering---")
+print(df.describe())  # Returns arithemic calculations based on all numeric data found in the dataset
+
+print("\n---Updated Netflix Dataset After Filtering---")
+print(df.head())  # Returns the first 5 rows of the dataset by default
+
+new_dataset = "Netflix_Dataset_CSWS.csv"
+df.to_csv(new_dataset, index=False)
+print(f"\nThe filtered dataset has been successfully saved as '{new_dataset}'.")
 
 
