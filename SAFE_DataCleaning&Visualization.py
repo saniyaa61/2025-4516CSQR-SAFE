@@ -1,4 +1,9 @@
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import tkinter as tk
+from tkinter import ttk
 
 df = pd.read_csv("Netflix Dataset.csv")  # Reading the Dataset csv file
 print("---First Row of the Netflix Dataset---")
@@ -70,8 +75,8 @@ print(df.describe())  # Returns arithemic calculations based on all numeric data
 print("\n---Updated Netflix Dataset After Filtering---")
 print(df.head())  # Returns the first 5 rows of the dataset by default
 
-new_dataset = "Netflix_Dataset_CSWS.csv"
-df.to_csv(new_dataset, index=False)
-print(f"\nThe filtered dataset has been successfully saved as '{new_dataset}'.")
+cleaned_dataset = "Netflix_Dataset_CSWS.csv"
+df.to_csv(cleaned_dataset, index=False)
+print(f"\nThe filtered dataset has been successfully saved as '{cleaned_dataset}'.")
 
 
