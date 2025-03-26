@@ -12,6 +12,12 @@ movies = data[data['type'] == 'Movie'].copy()  # Making a new df that has only m
 movies['duration_numeric'] = movies['duration'].str.replace(' min', '').astype(int)  # Extracting only the numeric values from duration and storing it in a new column
 
 duration_trend = movies.groupby('release_year')['duration_numeric'].mean().reset_index()  # Grouping movies by year and finding their average for each year while resetting the index 
+s
+root = tk.Tk()  # Creating the Tkinter Window
 
+root.title("Netflix Movie Duration Trend Over Time")  # Giving a name to the window
 
+root.geometry("1100x800")  # Setting window size
+
+root.configure(bg="#000000")  # Changing backgroud color to black (Netflix Theme)
 
