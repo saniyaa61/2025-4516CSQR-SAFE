@@ -84,4 +84,12 @@ style_dropdown.pack(anchor="w", pady=2)  # Placing it left with 2 spaces above/b
 style = ttk.Style()  #  Styling the dropdown
 style.configure("TCombobox", fieldbackground="#FFFFFF", background="#FFFFFF")  # Setting white backgrounds
 
+# Adding the Show Markers Button (Left Frame)
+marker_button = ttk.Button(
+    left_frame,               # Putting it on the left column
+    text="Show Markers",              
+    command=lambda: markers_visible.set(not markers_visible.get()) or update_plot())
 
+markers_visible = tk.BooleanVar(value=False)  # Starts as False (off)
+
+marker_button.pack(anchor="w", pady=5)  # Placing it left with 5 spaces above/below
