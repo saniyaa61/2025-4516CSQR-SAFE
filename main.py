@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 
 # adding the csv file
-df = pd.read_csv("Netflix_Dataset.csv")
+df = pd.read_csv("Netflix_Dataset_CSWS.csv")
 
 # list of years movies/tv shows have been released
 release_years = sorted(df["release_year"].unique())
