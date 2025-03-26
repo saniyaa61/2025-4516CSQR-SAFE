@@ -21,3 +21,14 @@ root.geometry("1100x800")  # Setting window size
 
 root.configure(bg="#000000")  # Changing backgroud color to black (Netflix Theme)
 
+# Creating a title label with font maintaining Netflix Theme
+title_label = ttk.Label(
+    root,  # Putting it inside the main window
+    text="Trend of Netflix Movie Durations Over Time", 
+    font=("Comic Sans MS", 24, "bold"),
+    foreground="#E50914",            
+    background="#000000"             
+)
+
+title_label.pack(pady=1)  # Adding it to the window with padding
+
