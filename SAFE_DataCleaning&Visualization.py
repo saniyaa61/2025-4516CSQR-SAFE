@@ -80,3 +80,21 @@ df.to_csv(cleaned_dataset, index=False)
 print(f"\nThe filtered dataset has been successfully saved as '{cleaned_dataset}'.")
 
 
+DfM = df[df["type"] == "Movie"]
+print('MOVIES')
+ActionAdventure = DfM["genre"].str.contains('Action & Adventure').sum()
+print('Action & Adventure:', ActionAdventure)
+FamilyMovies = DfM["genre"].str.contains('Children & Family Movies').sum()
+print('Children & Family Movies:', FamilyMovies)
+Comdies = DfM["genre"].str.contains('Comedies').sum()
+print('Comedies:', Comdies)
+
+
+DfTV = df[df["type"] == "TV Show"]
+print('TV SHOWS')
+KidsTV = DfTV["genre"].str.contains("Kids' TV").sum()
+print("Kids' TV:", KidsTV)
+TVComedies  = DfTV["genre"].str.contains('TV Comedies').sum()
+print('TV Comedies :', TVComedies )
+Anime = DfTV["genre"].str.contains('Anime Series').sum()
+print('Anime Series:', Anime)
