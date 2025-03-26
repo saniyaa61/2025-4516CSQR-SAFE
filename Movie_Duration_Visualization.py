@@ -55,3 +55,33 @@ left_frame.pack(side="left", padx=(390, 0))  # Placing it on the left
 
 right_frame = ttk.Frame(controls_frame)
 right_frame.pack(side="left", padx=30)  # Placing it on the right
+
+# Adding the Plot Style Dropdown (Left Frame)
+style_label = ttk.Label(
+    left_frame,                       # Putting it in the left box
+    text="Select Plot Style:",        
+    font=("Comic Sans MS", 10),       
+    foreground="#FFFFFF",             
+    background="#000000")
+
+style_label.pack(anchor="w")  # Placing it to the left side of the column
+
+plot_style_var = tk.StringVar(value="area")  # Setting the default choice to area
+
+# Adding a dropdown menu to select the graph type
+style_dropdown = ttk.Combobox(
+    left_frame,                       # Putting it in the left box
+    textvariable=plot_style_var,      # Linking it to our choice spot
+    values=["area", "line"],          # Options to pick: "area" or "line"
+    state="readonly",                 
+    font=("Comic Sans MS", 10),      
+    foreground="#000000",           
+    background="#FFFFFF",            
+    width=15)
+
+style_dropdown.pack(anchor="w", pady=2)  # Placing it left with 2 spaces above/below
+
+style = ttk.Style()  #  Styling the dropdown
+style.configure("TCombobox", fieldbackground="#FFFFFF", background="#FFFFFF")  # Setting white backgrounds
+
+
