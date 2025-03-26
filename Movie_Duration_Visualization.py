@@ -5,6 +5,13 @@ import mplcursors                  # To add interactive hover effects to plots
 import tkinter as tk               # To create a basic graphical user interface (GUI)
 from tkinter import ttk            # Extra tools that make the GUI look nicer
 
-# Reading the cleaned CSV file from main branch
-data = pd.read_csv('Netflix_Dataset_CSWS.csv')
+data = pd.read_csv('Netflix_Dataset_CSWS.csv')  # Reading the cleaned CSV file from main branch
+
+movies = data[data['type'] == 'Movie'].copy()  # Making a new df that has only movies in the type column
+
+movies['duration_numeric'] = movies['duration'].str.replace(' min', '').astype(int)  # Extracting only the numeric values from duration and storing it in a new column
+
+duration_trend = movies.groupby('release_year')['duration_numeric'].mean().reset_index()  # Grouping movies by year and finding their average for each year while resetting the index 
+
+
 
