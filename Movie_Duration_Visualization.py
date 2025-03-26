@@ -27,8 +27,31 @@ title_label = ttk.Label(
     text="Trend of Netflix Movie Durations Over Time", 
     font=("Comic Sans MS", 24, "bold"),
     foreground="#E50914",            
-    background="#000000"             
-)
+    background="#000000")
 
 title_label.pack(pady=1)  # Adding it to the window with padding
 
+plot_frame = ttk.Frame(root)  # Creating a frame inside the tk window for the graph
+
+plot_frame.pack(fill="both", expand=True)  # Adding it to the window with expand to stretch the space
+
+plot_frame.configure(style="TFrame")  # Maintaining the black background
+
+fig, ax = plt.subplots(figsize=(10, 5))  # Creating a blank plot
+
+canvas = FigureCanvasTkAgg(fig, master=plot_frame)  # Connecting the graph frame to the tk window
+
+canvas.get_tk_widget().pack(pady=(1, 1), fill="both", expand=True)  # Adding it to the window with padding and expand
+
+controls_frame = ttk.Frame(root)  # Creating a frame to hold User Controls (dropdowns and buttons)
+
+controls_frame.pack(fill="x", pady=5)  # Placing it in the tk window with padding
+
+controls_frame.configure(style="TFrame")  # Maintaining the black background 
+
+# Creating Sub-Frames for Left and Right Columns
+left_frame = ttk.Frame(controls_frame) 
+left_frame.pack(side="left", padx=(390, 0))  # Placing it on the left
+
+right_frame = ttk.Frame(controls_frame)
+right_frame.pack(side="left", padx=30)  # Placing it on the right
