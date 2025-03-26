@@ -64,7 +64,7 @@ style_label = ttk.Label(
     foreground="#FFFFFF",             
     background="#000000")
 
-style_label.pack(anchor="w")  # Placing it to the left side of the column
+style_label.pack(anchor="w")  # Placing it to the left side of the shelf
 
 plot_style_var = tk.StringVar(value="area")  # Setting the default choice to area
 
@@ -93,3 +93,40 @@ marker_button = ttk.Button(
 markers_visible = tk.BooleanVar(value=False)  # Starts as False (off)
 
 marker_button.pack(anchor="w", pady=5)  # Placing it left with 5 spaces above/below
+
+# Adding the Smoothing Window Dropdown (Right Frame)
+smoothing_label = ttk.Label(
+    right_frame,             # Putting it in the right box
+    text="Select Smoothing Window:",  
+    font=("Comic Sans MS", 10),       
+    foreground="#FFFFFF",             
+    background="#000000")
+
+smoothing_label.pack(anchor="w")  # Placing it to the left side of the shelf
+
+# Setting up a spot to store the dropdown choice, starting with 1
+smoothing_window_var = tk.IntVar(value=1)  # Setting the default choice to 1
+
+# Adding a dropdown menu to select how smooth the graph looks
+smoothing_dropdown = ttk.Combobox(
+    right_frame,                        # Putting it in the right box
+    textvariable=smoothing_window_var,  # Linking it to our choice spot
+    values=[1, 3, 5, 7, 10],            # Options to pick: 1, 3, 5, 7, or 10
+    state="readonly",                 
+    font=("Comic Sans MS", 10),   
+    foreground="#000000",        
+    background="#FFFFFF",             
+    width=15)
+
+smoothing_dropdown.pack(anchor="w", pady=2)  # Placing it left with 2 spaces above/below
+
+# Highlight Key Points Button (Right Frame)
+highlight_button = ttk.Button(
+    right_frame,                      # Putting it on the right shelf
+    text="Highlight Key Points",      
+    command=lambda: highlight_visible.set(not highlight_visible.get()) or update_plot())
+
+highlight_visible = tk.BooleanVar(value=False)  # Starts as False (off)
+
+highlight_button.pack(anchor="w", pady=5)  # Placing it left with 5 spaces above/below
+
