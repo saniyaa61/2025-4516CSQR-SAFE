@@ -130,3 +130,57 @@ highlight_visible = tk.BooleanVar(value=False)  # Starts as False (off)
 
 highlight_button.pack(anchor="w", pady=5)  # Placing it left with 5 spaces above/below
 
+# Function to Update the Plot Based on Style, Markers, Highlights, and Smoothing
+def update_plot(*args):
+    # Changing button words depending on if markers or highlights are on or off
+    marker_button.config(text="Hide Markers" if markers_visible.get() else "Show Markers")  # Show or Hide
+    highlight_button.config(text="Hide Key Points" if highlight_visible.get() else "Highlight Key Points")  # Show or Hide
+
+    ax.clear()  # Starting the graph afresh
+
+    smoothing_window = smoothing_window_var.get()  # Smoothing out the movie durations based on the dropdown choice
+    smoothed_durations = duration_trend['duration_numeric'].rolling(
+        window=smoothing_window,  # How many points to average together
+        center=True               # Average around the middle point
+    ).mean().ffill().bfill()      # Averaging, then filling any gaps at the start or end
+
+    marker_style = 'o' if markers_visible.get() else None  # Setting up how markers (dots) looks, 'o' if on, None if off
+    marker_color = "#FFFFFF"  
+    marker_size = 8          
+
+    # Drawing the graph based on what style is picked
+    if plot_style_var.get() == "line":  # If "line" is chosen in the dropdown
+        line, = ax.plot(
+            duration_trend['release_year'],  
+            smoothed_durations,          
+            color="#E50914",                
+            linewidth=3,                      
+            label="Average Movie Duration",  
+            marker=marker_style,              
+            markersize=marker_size,        
+            markerfacecolor=marker_color,    
+            markeredgecolor=marker_color      
+        )
+    else:  # If "area" is chosen in the dropdown
+        ax.fill_between(
+            duration_trend['release_year'],  
+            smoothed_durations,              
+            color="#E50914",                
+            alpha=0.6,                        
+            label="Average Movie Duration" 
+        )
+        # Adding a line on top so it’s easier to see
+        line, = ax.plot(
+            duration_trend['release_year'],  
+            smoothed_durations,             
+            color="#E50914",                
+            linewidth=2,                      
+            marker=marker_style,          
+            markersize=marker_size,        
+            markerfacecolor=marker_color,   
+            markeredgecolor=marker_color     
+        )
+
+
+        
+
