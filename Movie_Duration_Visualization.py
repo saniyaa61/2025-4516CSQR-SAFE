@@ -181,6 +181,34 @@ def update_plot(*args):
             markeredgecolor=marker_color     
         )
 
+ax.set_title(       # Adding graph title
+    "Average Movie Duration by Release Year", 
+    color="#FFFFFF",                         
+    fontsize=14,                          
+    pad=10)
 
-        
+ax.set_xlabel(      # Adding x-axis label
+    "Release Year",                        
+    color="#FFFFFF",                      
+    fontsize=12)
+
+ax.set_ylabel(      # Adding y-axis label
+    "Average Duration (minutes)",             
+    color="#FFFFFF",                    
+    fontsize=12)
+
+ax.legend(facecolor="#000000", edgecolor="#FFFFFF", labelcolor="#FFFFFF")  # Adding a legend
+
+ax.set_yticks([0, 50, 100, 150, 200, 250])  # Setting fixed numbers on the y=axis
+
+ax.set_facecolor("#000000")  # Making the graph’s inside black
+
+fig.set_facecolor("#000000")  # Making the graph’s outside black too
+
+ax.grid(True, linestyle="--", alpha=0.3, color="#FFFFFF")  # Adding grid with dashed lines
+
+ax.tick_params(colors="#FFFFFF")  # Making the ticks white
+
+for spine in ax.spines.values():  # Making the graph's edges white
+    spine.set_color("#FFFFFF")          
 
