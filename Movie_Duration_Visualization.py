@@ -233,4 +233,35 @@ def on_add(sel):        # Defining a function that figures out what to show
     sel.annotation.set_color("#FFFFFF")          
     sel.annotation.set_fontfamily("Comic Sans MS")
 
+# Highlighting the highest and lowest points if the highlight button is on
+if highlight_visible.get():  # Checking if the highlight switch is True (on)
+    max_idx = smoothed_durations.idxmax()  # Finding the spot with the biggest number
+    min_idx = smoothed_durations.idxmin()  # Finding the spot with the smallest number
+
+    max_year = duration_trend['release_year'][max_idx]  # Max year 
+    max_duration = smoothed_durations[max_idx]          # Max duration
+    min_year = duration_trend['release_year'][min_idx]  # Min year
+    min_duration = smoothed_durations[min_idx]          # Min duration
+
+    for year, duration in [(max_year, max_duration), (min_year, min_duration)]:    # Making a hover for the highest and lowest points
+
+        idx = (duration_trend['release_year'] - year).abs().idxmin()  # Finding the closest year to match the spot
+        x, y = duration_trend['release_year'][idx], smoothed_durations[idx]  # Exact x and y
+
+        annotation = ax.annotate(    # Adding hover that stays on the graph 
+            f"Year: {int(year)}\nAvg Duration: {duration:.1f} min", 
+            xy=(x, y),                        # Where the note points on the graph
+            xytext=(5, 5),                    # Moving the note 5 up and 5 right from the point
+            textcoords="offset points",       # Measuring the move from the point
+            color="#FFFFFF",                
+            fontfamily="Comic Sans MS",      
+            bbox=dict(                     
+                facecolor="#000000",      
+                alpha=0.8,               
+                edgecolor="#FFFFFF",      
+                linewidth=1                 
+            )
+        )
+        annotation.set_visible(True)  # Making sure the hover shows up
+
 
