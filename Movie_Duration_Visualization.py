@@ -212,3 +212,25 @@ ax.tick_params(colors="#FFFFFF")  # Making the ticks white
 for spine in ax.spines.values():  # Making the graph's edges white
     spine.set_color("#FFFFFF")          
 
+cursor = mplcursors.cursor(line, hover=True)  # Adding hover functionality to show info when user moves the cursor over the graph
+
+@cursor.connect("add")  # Runs this when the cursor pops up
+def on_add(sel):        # Defining a function that figures out what to show
+    x, y = sel.target   # Grabbing where the mouse is (x is year, y is duration)
+    year = int(x)      
+
+    idx = (duration_trend['release_year'] - year).abs().idxmin()  # Finding the closest year to where the mouse is
+    duration = smoothed_durations.iloc[idx]  # Gets the smoothed movie length for that spot
+
+    sel.annotation.set_text(f"Year: {year}\nAvg Duration: {duration:.1f} min")  # Hover text
+
+    sel.annotation.get_bbox_patch().set(        # Making the hover box look nice
+        facecolor="#000000",    
+        alpha=0.8,             
+        edgecolor="#FFFFFF", 
+        linewidth=1)
+
+    sel.annotation.set_color("#FFFFFF")          
+    sel.annotation.set_fontfamily("Comic Sans MS")
+
+
