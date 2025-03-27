@@ -21,7 +21,7 @@ root.geometry("1100x800")  # Setting window size
 
 root.configure(bg="#000000")  # Changing backgroud color to black (Netflix Theme)
 
-# Creating a title label with font maintaining Netflix Theme
+# Creating a title label with font, maintaining Netflix Theme
 title_label = ttk.Label(
     root,  # Putting it inside the main window
     text="Trend of Netflix Movie Durations Over Time", 
@@ -224,7 +224,7 @@ def update_plot(*args):
 
         sel.annotation.set_text(f"Year: {year}\nAvg Duration: {duration:.1f} min")  # Hover text
 
-        sel.annotation.get_bbox_patch().set(        # Making the hover box look nice
+        sel.annotation.get_bbox_patch().set(    # Making the hover box look nice
         facecolor="#000000", alpha=0.8, edgecolor="#FFFFFF", linewidth=1)
 
         sel.annotation.set_color("#FFFFFF")          
@@ -264,9 +264,21 @@ smoothing_window_var.trace("w", update_plot)  # Runs update_plot when smoothing 
 
 update_plot()  # Calls the update function to show the graph right away
 
+description = (  # Adding a little note for the user
+    "This visualization shows the trend of average movie durations on Netflix over time.\n"  # First line
+    "Hover over the plot to see the average duration for each year.\n"  # Second line
+    "Choose between Area and Line plot, Markers or no Markers, Different Data Points, and Displaying the Key Insights."  # Third line
+)
 
+desc_label = ttk.Label(                # Adding the note to the window
+    root,                              # Putting it in the main window
+    text=description,                 
+    font=("Comic Sans MS", 10),    
+    foreground="#FFFFFF",          
+    background="#000000",         
+    justify="center")
 
-    
+desc_label.pack(pady=5)  # Adding it to the window with padding
 
-
+root.mainloop()  # Running the Tkinter Application
 
