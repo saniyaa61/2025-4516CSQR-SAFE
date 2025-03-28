@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
 from tkinter import ttk
 
@@ -148,24 +147,67 @@ y_axis_TV = np.array([KidsTV, TVComedies, Anime])
 
 window = tk.Tk()
 
+showDataLebels = tk.BooleanVar()
+showGrid = tk.BooleanVar()
+
 window.title("Top 3 most popular genres")
 window.geometry("500x500")
 
 chooseMovie_OR_TvShow_Label = tk.Label(window, text="Choose Movie or TV Show")
-chooseMovie_OR_TvShow_Label.pack(pady=10)
+chooseMovie_OR_TvShow_Label.pack()
 
 movie_OR_TVshow = ttk.Combobox(window, values=["Movie", "TV Show"])
 movie_OR_TVshow.pack()
 
+showDataLebels_CheckBox = ttk.Checkbutton(
+    window, text="Show Data Labels", variable=showDataLebels
+)
+showDataLebels_CheckBox.pack()
+
+showGrid_CheckBox = ttk.Checkbutton(window, text="Show Grid", variable=showGrid)
+showGrid_CheckBox.pack(pady=15)
+
+
+def updateScaleLabel(value):
+    ScaleLabel.config(text=f"{float(value):.2f}")
+
+
+gridTransparency_Label = tk.Label(
+    window, text="Grid lines Transparency (0 = Transparent, 1 = Opaque)"
+)
+gridTransparency_Label.pack()
+
+gridTransparency_slider = ttk.Scale(
+    window,
+    from_=0,
+    to=1,
+    orient="horizontal",
+    command=updateScaleLabel,
+)
+gridTransparency_slider.pack()
+
+
+ScaleLabel = tk.Label(window, text="0.0")
+ScaleLabel.pack()
+
 
 def showChart():
-    fig, axis = plt.subplots()
+
+    show_DataLebels = showDataLebels.get()
+    show_Grid = showGrid.get()
+    gridTransparency = gridTransparency_slider.get()
+
     if movie_OR_TVshow.get() == "Movie":
+        fig, axis = plt.subplots()
 
         axis.bar(x_axis_Movie, y_axis_Movie, width=0.5)
 
-        for i, value in enumerate(y_axis_Movie):
-            axis.text(i, value + 1.5, str(value), color="black", ha="center")
+        if show_Grid:
+            axis.grid(axis="y", alpha=gridTransparency, linewidth=0.7)  # show gridlines
+
+        if show_DataLebels:
+            for i, value in enumerate(y_axis_Movie):
+                axis.text(i, value + 1.5, str(value), color="black", ha="center")
 
         plt.xlabel("Genres")
         plt.ylabel("Number of Movies")
