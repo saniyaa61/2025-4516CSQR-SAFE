@@ -158,27 +158,11 @@ movie_OR_TVshow = ttk.Combobox(window, values=["Movie", "TV Show"])
 movie_OR_TVshow.pack()
 
 
-def splitGenre(genre):
-    splitList = []
-    genres = genre["genre"]
-    print(genres)
-    for i in genres:
-        print(i)
-        # print(genre[i].split(",").index("Action & Adventure"))
-        # splitList.append(i.split(", ")[i.split(", ").index("Action & Adventure")])
-        # splitList = genre[i].split(", ")
-        # splitList = genre.split(", ")
-        # return splitList[splitList.index("Action & Adventure")]
-        return splitList
-
-
 def showChart():
+    fig, axis = plt.subplots()
     if movie_OR_TVshow.get() == "Movie":
-        fig, axis = plt.subplots(sharex=True, sharey=True)
 
         axis.bar(x_axis_Movie, y_axis_Movie, width=0.5)
-
-        # axis.bar(x_axis_TV, y_axis_TV, width=0.5) # TV show bar chart
 
         for i, value in enumerate(y_axis_Movie):
             axis.text(i, value + 1.5, str(value), color="black", ha="center")
