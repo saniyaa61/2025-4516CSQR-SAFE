@@ -33,7 +33,9 @@ def onePieChart():
     )
     choose_a_year_label.pack()
 
-    releaseYears_comboBox = ttk.Combobox(onePieChartWindow, values=release_years)
+    releaseYears_comboBox = ttk.Combobox(
+        onePieChartWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox.pack()
 
     ShowLegend_CheckBox = ttk.Checkbutton(
@@ -121,10 +123,14 @@ def twoPieCharts():
     )
     choose_a_year_label.pack()
 
-    releaseYears_comboBox1 = ttk.Combobox(twoPieChartsWindow, values=release_years)
+    releaseYears_comboBox1 = ttk.Combobox(
+        twoPieChartsWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox1.pack(pady=5)
 
-    releaseYears_comboBox2 = ttk.Combobox(twoPieChartsWindow, values=release_years)
+    releaseYears_comboBox2 = ttk.Combobox(
+        twoPieChartsWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox2.pack(pady=5)
 
     ShowLegend_CheckBox = ttk.Checkbutton(
@@ -238,13 +244,19 @@ def threePieCharts():
     )
     choose_a_year_label.pack()
 
-    releaseYears_comboBox1 = ttk.Combobox(threePieChartsWindow, values=release_years)
+    releaseYears_comboBox1 = ttk.Combobox(
+        threePieChartsWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox1.pack(pady=5)
 
-    releaseYears_comboBox2 = ttk.Combobox(threePieChartsWindow, values=release_years)
+    releaseYears_comboBox2 = ttk.Combobox(
+        threePieChartsWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox2.pack(pady=5)
 
-    releaseYears_comboBox3 = ttk.Combobox(threePieChartsWindow, values=release_years)
+    releaseYears_comboBox3 = ttk.Combobox(
+        threePieChartsWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox3.pack(pady=5)
 
     ShowLegend_CheckBox = ttk.Checkbutton(
@@ -377,16 +389,24 @@ def fourPieCharts():
     )
     choose_a_year_label.pack()
 
-    releaseYears_comboBox1 = ttk.Combobox(fourPieChartsWindow, values=release_years)
+    releaseYears_comboBox1 = ttk.Combobox(
+        fourPieChartsWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox1.pack(pady=5)
 
-    releaseYears_comboBox2 = ttk.Combobox(fourPieChartsWindow, values=release_years)
+    releaseYears_comboBox2 = ttk.Combobox(
+        fourPieChartsWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox2.pack(pady=5)
 
-    releaseYears_comboBox3 = ttk.Combobox(fourPieChartsWindow, values=release_years)
+    releaseYears_comboBox3 = ttk.Combobox(
+        fourPieChartsWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox3.pack(pady=5)
 
-    releaseYears_comboBox4 = ttk.Combobox(fourPieChartsWindow, values=release_years)
+    releaseYears_comboBox4 = ttk.Combobox(
+        fourPieChartsWindow, values=release_years, state="readonly"
+    )
     releaseYears_comboBox4.pack(pady=5)
 
     ShowLegend_CheckBox = ttk.Checkbutton(
