@@ -169,7 +169,7 @@ def showChart():
 
         plt.xlabel("Genres")
         plt.ylabel("Number of Movies")
-        plt.title("Top 3 most popular genres for Movies")
+        plt.title("Top 3 most popular genres for Movies between 2017 and 2021")
 
         plt.show()
 
