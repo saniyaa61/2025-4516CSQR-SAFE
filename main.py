@@ -13,8 +13,6 @@ window = tk.Tk()  # created tkinter window
 window.title("Movie/tv show Ratings visualizer")  # changed title of window
 window.geometry("500x500")  # changed size of window
 
-print(df["rating"].unique())
-
 
 def onePieChart():
     # created tkinter window
