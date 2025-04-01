@@ -85,14 +85,29 @@ print(f"\nThe filtered dataset has been successfully saved as '{cleaned_dataset}
 
 data = pd.read_csv("Netflix_Dataset_CSWS.csv")   # Loading and reading the cleaned csv
 
-df_recent = data[data['release_year'].between(2017, 2021)]  # making new dataset with rows having release_year between 2017 and 2021
+df_recent = data[data['release_year'].between(2017, 2021)]   # making new dataset with rows having release_year between 2017 and 2021
 
 # Function to find the top 3 genres for a specific type (Movie or TV Show) and year
 def get_top_genres(df, content_type, year):
-    df_filtered = data[(data['type'] == content_type) & (data['release_year'] == year)]       # Get only the rows for the given type (Movie or TV Show) and year
+    df_filtered = data[(data['type'] == content_type) & (data['release_year'] == year)]   # Get only the rows for the given type (Movie or TV Show) and year
 
-    genres = df_filtered['genre'].str.split(', ', expand=True).stack()        # Split the genres (some entries have multiple genres like "Comedies, Dramas") into a list
+    genres = df_filtered['genre'].str.split(', ', expand=True).stack()   # Split the genres (some entries have multiple genres like "Comedies, Dramas") into a list
 
-    genre_counts = genres.value_counts()        # Count how many times each genre appears
+    genre_counts = genres.value_counts()   # Count how many times each genre appears
 
-    return genre_counts.head(3)        # Return the top 3 genres with the highest counts
+    return genre_counts.head(3)   # Return the top 3 genres with the highest counts
+
+# Function to draw the bar graph
+def plot_genres(content_type, ax):
+    ax.clear()   # Clear the old graph so we can draw a new one
+    
+    years = range(2017, 2022)   # List of years from 2017 to 2021
+    colors = ['#E50914', '#B0B0B0', '#808080']   # Colors for the bars: Netflix red, light grey, and medium grey
+    
+    bar_width = 0.25   # Setting the width of each bar
+    # Loop through each year
+    for i, year in enumerate(years):
+        top_genres = get_top_genres(df_recent, content_type, year)   # Get the top 3 genres for this year and type
+
+        for j, (genre, count) in enumerate(top_genres.items()):   # Loop through the top 3 genres and their counts
+            ax.bar(i + j * bar_width, count, bar_width, color=colors[j], label=genre if i == 0 else "")   # Draw a bar for this genre, position it based on the year and genre number, then add the genre name to the legend only for the first year to avoid duplicates
