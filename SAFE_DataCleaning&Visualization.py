@@ -213,3 +213,15 @@ dropdown.set("Movie")   # Setting the default option to "Movie"
 dropdown.pack(side=tk.LEFT, padx=5)   # Placing the dropdown right next to the label
 
 dropdown.bind("<<ComboboxSelected>>", on_select)   # When the user selects an option, call the on_select function
+
+fig, ax = plt.subplots(figsize=(6, 4))   # Creating the space for the graph
+
+canvas = FigureCanvasTkAgg(fig, master=root)   # Adding the graph to the window
+
+canvas.get_tk_widget().pack(pady=10, fill=tk.BOTH, expand=True)   # Placing the graph in the window with some space around it
+
+plot_genres("Movie", ax)   # Draw the graph for the first time (with "Movie" selected)
+
+# Start the window and keep it open until the user closes it
+
+root.mainloop()
