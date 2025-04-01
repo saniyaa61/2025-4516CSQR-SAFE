@@ -197,3 +197,19 @@ title_label = tk.Label(
 )  # Adding a title at the top of the window
 
 title_label.pack(pady=10)  # Placing the title with some space above and below
+
+dropdown_frame = tk.Frame(root, bg='#FFFFFF')   # Creating a small area to hold the dropdown and its label
+
+dropdown_frame.pack()   # Placing the area in the window
+
+dropdown_label = tk.Label(dropdown_frame, text="Select Content Type", bg='#FFFFFF')   # Adding a label for the dropdown
+
+dropdown_label.pack(side=tk.LEFT, padx=5)   # Placing the label on the left side with a little space
+
+dropdown = ttk.Combobox(dropdown_frame, values=["Movie", "TV Show"], state="readonly")   # Adding a dropdown menu with options "Movie" and "TV Show"
+
+dropdown.set("Movie")   # Setting the default option to "Movie"
+
+dropdown.pack(side=tk.LEFT, padx=5)   # Placing the dropdown right next to the label
+
+dropdown.bind("<<ComboboxSelected>>", on_select)   # When the user selects an option, call the on_select function
