@@ -178,3 +178,12 @@ def on_select(event):
     content_type = dropdown.get()  # Get the selected option (Movie or TV Show)
 
     plot_genres(content_type, ax)  # Draw the graph with the new selection
+
+
+root = tk.Tk()  # Creating the main window
+
+root.title("Netflix Genre Popularity")  # Setting the window title
+
+root.configure(bg="#FFFFFF")  # Making the window background white
+
+root.geometry("900x600")  # Setting the window size
