@@ -87,3 +87,12 @@ data = pd.read_csv("Netflix_Dataset_CSWS.csv")   # Loading and reading the clean
 
 df_recent = data[data['release_year'].between(2017, 2021)]  # making new dataset with rows having release_year between 2017 and 2021
 
+# Function to find the top 3 genres for a specific type (Movie or TV Show) and year
+def get_top_genres(df, content_type, year):
+    df_filtered = data[(data['type'] == content_type) & (data['release_year'] == year)]       # Get only the rows for the given type (Movie or TV Show) and year
+
+    genres = df_filtered['genre'].str.split(', ', expand=True).stack()        # Split the genres (some entries have multiple genres like "Comedies, Dramas") into a list
+
+    genre_counts = genres.value_counts()        # Count how many times each genre appears
+
+    return genre_counts.head(3)        # Return the top 3 genres with the highest counts
