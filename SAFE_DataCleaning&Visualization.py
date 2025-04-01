@@ -187,3 +187,13 @@ root.title("Netflix Genre Popularity")  # Setting the window title
 root.configure(bg="#FFFFFF")  # Making the window background white
 
 root.geometry("900x600")  # Setting the window size
+
+title_label = tk.Label(
+    root,
+    text="Netflix Genre Popularity",
+    font=("Helvetica", 36, "bold"),
+    bg="#FFFFFF",
+    fg="#E50914",
+)  # Adding a title at the top of the window
+
+title_label.pack(pady=10)  # Placing the title with some space above and below
