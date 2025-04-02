@@ -46,5 +46,7 @@ python show_country_rating.py
 ## Example Output
 The script generates a stacked bar chart showing content production by country and maturity rating.
 
+![Country Chart](country_chart.png)
+
 
 
