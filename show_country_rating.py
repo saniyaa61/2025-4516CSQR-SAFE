@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import tkinter as tk
-from tkinter import ttk
 
 def showCountryChart():
     #read data from Netflix_Dataset_CSWS (after cleaning)
