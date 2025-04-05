@@ -24,80 +24,98 @@ def onePieChart():
     # changed size of window
     onePieChartWindow.geometry("500x500")
 
+    # boolean variables to keep track of the values of the checkboxes
     showLegend = tk.BooleanVar()
     showPercentageValues = tk.BooleanVar()
     showLabels = tk.BooleanVar()
 
+    # label telling the user to choose a year
     choose_a_year_label = tk.Label(
         onePieChartWindow, text="choose a year for the pie chart"
     )
     choose_a_year_label.pack()
 
+    # combobox for users to select a year for the pie chart
     releaseYears_comboBox = ttk.Combobox(
         onePieChartWindow, values=release_years, state="readonly"
     )
     releaseYears_comboBox.pack()
 
+    # checkbox to let the user show the legend or not
     ShowLegend_CheckBox = ttk.Checkbutton(
         onePieChartWindow, text="show legend", variable=showLegend
     )
     ShowLegend_CheckBox.pack(pady=10)
 
+    # checkbox to let the user show the percentage values or not
     ShowPercentageValues_CheckBox = ttk.Checkbutton(
         onePieChartWindow, text="show percentage values", variable=showPercentageValues
     )
     ShowPercentageValues_CheckBox.pack()
 
+    # checkbox to let the user show the labels or not
     ShowLabels_CheckBox = ttk.Checkbutton(
         onePieChartWindow, text="show labels", variable=showLabels
     )
     ShowLabels_CheckBox.pack(pady=10)
 
+    # function to create the pie chart
     def showPieChart():
         # checking if the value of the combobox is valid
         if not releaseYears_comboBox.get():
             errorLabel.config(text="ERROR - please select a valid year")
             return
         else:
-            year = int(releaseYears_comboBox.get())
-            errorLabel.config(text="")
+            year = int(releaseYears_comboBox.get())  # getting the value of the combobox
+            errorLabel.config(text="")  # resetting the error label
 
+        # getting the movies/tv shows released in the selected year
         titles = df[df["release_year"] == year]
 
+        # getting the values of the checkboxes
         show_legend = showLegend.get()
         show_percentageValues = showPercentageValues.get()
         show_labels = showLabels.get()
 
+        # checking if the user checked the show legend checkbox
         if show_percentageValues:
             # function that checks if the percentage values are over 0.5 if not they are not displayed
             percentageValues = lambda p: f"{p:.2f}%" if p > 0.5 else ""
         else:
             percentageValues = None
 
+        # checking if the user checked the show labels checkbox
         if show_labels:
             # getting the unique values of labels
             labels = titles["rating"].unique()
         else:
             labels = None
 
+        # creating the pie chart
         plt.pie(
             titles["rating"].value_counts(), labels=labels, autopct=percentageValues
         )
+
+        # changing the title of the pie chart
         plt.title(f"Rating of movies/tv shows in {year}")
 
+        # checking if the user checked the show legend checkbox
         if show_legend:
+            # adding a legend to the top right of the pie chart
             plt.legend(
                 titles["rating"].unique(),
                 loc="upper right",
                 bbox_to_anchor=(1.35, 1.15),
             )
 
+        # text displaying thre total number of movies/tv shows in the selected year
         plt.text(
             -0.5, -1.5, f"Total number of movies/tv shows in {year}: {len(titles)}"
         )
 
         plt.show()
 
+    # button to create the pie chart
     showPieChartButton = ttk.Button(
         onePieChartWindow, text="Show Pie Chart", command=showPieChart
     )
