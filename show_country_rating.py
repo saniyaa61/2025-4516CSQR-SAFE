@@ -11,6 +11,8 @@ def showCountryChart():
 
     #split the countryies in one row to be in many rows
     df_exploded = df1.assign(country=df1['country'].str.split(',')).explode('country')
+    # Clean country names - strip whitespace and standardize
+    df_exploded['country'] = df_exploded['country'].str.strip()
 
     #group by country and rating, counting the number of shows for each combination
     content_by_country_rating = df_exploded.groupby(['country', 'rating']).size().reset_index(name='count')
