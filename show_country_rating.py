@@ -4,10 +4,15 @@ import matplotlib.pyplot as plt
 
 def showCountryChart():
     #read data from Netflix_Dataset_CSWS (after cleaning)
-    df1 = pd.read_csv("Netflix_Dataset_CSWS.csv")  # Reading the Dataset csv file
-    #group by country and rating, counting the number of shows for each combination
+    df1 = pd.read_csv("Netflix Dataset.csv")  # Reading the Dataset csv file
+
+    # drop rows where country is null or empty
+    df1 = df1[df1['country'].notna() & (df1['country'] != '')]
+
+    #split the countryies in one row to be in many rows
     df_exploded = df1.assign(country=df1['country'].str.split(',')).explode('country')
 
+    #group by country and rating, counting the number of shows for each combination
     content_by_country_rating = df_exploded.groupby(['country', 'rating']).size().reset_index(name='count')
     
     #aggregate the total content produced by each country
